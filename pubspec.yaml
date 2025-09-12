@@ -13,6 +13,15 @@ dependencies:
     sdk: flutter
 
   cupertino_icons: ^1.0.8
+  intl: ^0.20.2
+  path_provider: ^2.1.5
+  bloc: ^9.0.0
+  flutter_bloc: ^9.1.1
+  hydrated_bloc: ^10.1.1
+  get_it: ^8.2.0
+  logger: ^2.6.1
+  equatable: ^2.0.7
+  phosphor_flutter: ^2.1.0
 
 dev_dependencies:
   flutter_test:
@@ -23,3 +32,28 @@ dev_dependencies:
 flutter:
 
   uses-material-design: true
+
+  assets:
+    - assets/fonts/Ubuntu/
+
+  fonts:
+    - family: 'Ubuntu'
+      fonts:
+        - asset: 'assets/fonts/Ubuntu/Ubuntu-Bold.ttf'
+          weight: 900
+        - asset: 'assets/fonts/Ubuntu/Ubuntu-Medium.ttf'
+          weight: 700
+        - asset: 'assets/fonts/Ubuntu/Ubuntu-Regular.ttf'
+          weight: 600
+        - asset: 'assets/fonts/Ubuntu/Ubuntu-Light.ttf'
+          weight: 500
+
+        - asset: 'assets/fonts/Ubuntu/Ubuntu-BoldItalic.ttf'
+          style: italic
+          weight: 900
+        - asset: 'assets/fonts/Ubuntu/Ubuntu-MediumItalic.ttf'
+          style: italic
+          weight: 700
+        - asset: 'assets/fonts/Ubuntu/Ubuntu-LightItalic.ttf'
+          style: italic
+          weight: 500
