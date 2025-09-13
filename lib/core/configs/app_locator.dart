@@ -6,6 +6,10 @@ class AppLocator {
   static final GetIt sl = GetIt.instance;
 
   void setup() {
+    LoggerHelper.debug(message: 'Setup App Route');
+    setupRoute();
+    LoggerHelper.debug(message: 'Setup App Permission');
+    setupPermission();
     LoggerHelper.debug(message: 'Setup App Color');
     setupColors();
     LoggerHelper.debug(message: 'Setup App Theme');
@@ -14,9 +18,6 @@ class AppLocator {
     setupSystemUI();
     LoggerHelper.debug(message: 'Setup App Intro');
     setupAppIntro();
-    LoggerHelper.debug(message: 'Setup App Permission');
-    setupPermission();
-
   }
 
   void setupColors() {
@@ -56,5 +57,10 @@ class AppLocator {
     sl.registerLazySingleton<AppPermission>(() => AndroidPermission(), instanceName: 'Android');
     sl.registerLazySingleton(() => PermissionController(appPermission: sl<AppPermission>(instanceName: 'Android')), instanceName: 'Android');
     sl.registerLazySingleton(() => PermissionCubit());
+  }
+
+  void setupRoute() {
+    sl.registerLazySingleton<AppRoute>(() => RouteProvider());
+    sl.registerLazySingleton(() => RouteController(appRoute: sl<AppRoute>()));
   }
 }

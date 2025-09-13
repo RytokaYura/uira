@@ -52,7 +52,7 @@ class IntroPageControl extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.only(right: 10.0),
                   child: AppIconButton(
-                    onTap: () {},
+                    onTap: () => RouteHelper().goRoute(context, AppRoutePath.home),
                     icon: PhosphorIcons.arrowRight(),
                     color: theme.colorScheme.onPrimary,
                   ),

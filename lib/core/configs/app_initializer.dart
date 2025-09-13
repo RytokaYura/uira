@@ -9,7 +9,8 @@ class AppInitializer {
   Future<void> setup() async {
     await setupHydrated();
     setupLocator();
-    setupApp();
+    final route = await AppLocator.sl<RouteController>().getInitialRoute();
+    setupApp(route);
   }
 
   Future<void> setupHydrated() async {
@@ -24,7 +25,7 @@ class AppInitializer {
     locator.setup();
   }
 
-  void setupApp() {
+  void setupApp(String initialRoute) {
     LoggerHelper.debug(message: 'Start Application 🎉🎉');
     runApp(
       MultiBlocProvider(
@@ -32,7 +33,7 @@ class AppInitializer {
           BlocProvider(create: (_) => AppLocator.sl<ThemeCubit>()),
           BlocProvider(create: (_) => AppLocator.sl<PermissionCubit>()),
         ],
-        child: MyApp(),
+        child: MyApp(initialRoute: initialRoute,),
       ),
     );
   }
