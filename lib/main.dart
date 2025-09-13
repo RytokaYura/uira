@@ -3,8 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:uira/common/common_path.dart';
 import 'package:uira/core/core_path.dart';
 
-import 'core/routes/generated/generated_route.dart';
-
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 

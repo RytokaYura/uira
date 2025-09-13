@@ -62,5 +62,6 @@ class AppLocator {
   void setupRoute() {
     sl.registerLazySingleton<AppRoute>(() => RouteProvider());
     sl.registerLazySingleton(() => RouteController(appRoute: sl<AppRoute>()));
+    sl.registerLazySingleton(() => RouteCubit());
   }
 }

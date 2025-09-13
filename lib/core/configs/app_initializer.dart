@@ -30,6 +30,7 @@ class AppInitializer {
     runApp(
       MultiBlocProvider(
         providers: [
+          BlocProvider(create: (_) => AppLocator.sl<RouteCubit>()),
           BlocProvider(create: (_) => AppLocator.sl<ThemeCubit>()),
           BlocProvider(create: (_) => AppLocator.sl<PermissionCubit>()),
         ],
