@@ -3,7 +3,7 @@ import 'dart:ui';
 import '../color_path.dart';
 
 class DarkColor extends ColorData {
-  @override Color get background => const Color(0xFF111415);
+  @override Color get background => const Color(0xFF0A0A0A);
   @override Color get disabled => Color.lerp(primary, surface, .8)!;
   @override Color get error => const Color(0xFFEF5350);
   @override Color get hint => const Color(0xFFAAAAAA);

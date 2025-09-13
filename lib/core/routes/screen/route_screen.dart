@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:uira/common/common_path.dart';
 import '../../core_path.dart';
 
 class RouteScreen extends StatelessWidget {
@@ -14,16 +15,17 @@ class RouteScreen extends StatelessWidget {
     final BottomRouteHelper bottomRouteHelper = BottomRouteHelper();
     return BlocBuilder<RouteCubit, RouteState>(
       builder: (context, state) {
-        return PopScope(
-          canPop: false,
-          onPopInvokedWithResult: (didPop, result) => bottomRouteHelper.onPop(didPop: didPop, state: state, shell: shell),
-          child: Scaffold(
-            body: shell,
-            bottomNavigationBar: BottomNavigationBar(
-              items: routeData.barItems,
-              onTap: (index) => bottomRouteHelper.onTap(index: index, shell: shell),
-              currentIndex: shell.currentIndex,
-              type: BottomNavigationBarType.fixed,
+        return AppOverlay(
+          child: PopScope(
+            canPop: false,
+            onPopInvokedWithResult: (didPop, result) => bottomRouteHelper.onPop(didPop: didPop, state: state, shell: shell),
+            child: Scaffold(
+              body: shell,
+              bottomNavigationBar: BottomNavigationBar(
+                items: routeData.barItems,
+                onTap: (index) => bottomRouteHelper.onTap(index: index, shell: shell),
+                currentIndex: shell.currentIndex,
+              ),
             ),
           ),
         );

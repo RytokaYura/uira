@@ -24,9 +24,9 @@ class ThemeImpl extends AppTheme {
   BottomNavigationBarThemeData getBottomBarTheme({required ColorScheme scheme, required Color color, required Color unContent}) {
     return BottomNavigationBarThemeData(
       backgroundColor: color,
-      elevation: 2.0,
+      elevation: 0.0,
       unselectedItemColor: unContent,
-      selectedItemColor: scheme.onSurface,
+      selectedItemColor: scheme.onPrimary,
       showSelectedLabels: false,
       showUnselectedLabels: false,
       type: BottomNavigationBarType.fixed,

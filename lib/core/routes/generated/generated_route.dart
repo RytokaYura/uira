@@ -23,7 +23,7 @@ class GeneratedRoute {
               GoRoute(
                 path: AppRoutePath.home,
                 name: 'home',
-                builder: (context, state) => Container(),
+                builder: (context, state) => HomeScreen(),
               ),
             ],
           ),

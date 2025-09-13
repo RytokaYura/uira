@@ -15,6 +15,7 @@ class AppListBuilder extends StatelessWidget {
       scrollDirection: scrollDirection ?? Axis.vertical,
       physics: physics ?? NeverScrollableScrollPhysics(),
       padding: padding ?? EdgeInsets.zero,
+      shrinkWrap: true,
       itemBuilder: builder ?? (context, index) => SizedBox(),
     );
   }
