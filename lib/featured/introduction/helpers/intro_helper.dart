@@ -16,10 +16,7 @@ class IntroHelper {
     ]);
   }
 
-  void onPageChanged(int index) {
-    AppLocator.sl<IntroCubit>().setIndex(index);
-  }
-
+  void onPageChanged(int index) => AppLocator.sl<IntroCubit>().setIndex(index);
   void onNextPage(int index) => AppLocator.sl<IntroCubit>().toNextPage(pageController, listPage.length);
   void onBackPage(int index) => AppLocator.sl<IntroCubit>().toPrevPage(pageController);
 

@@ -12,6 +12,6 @@ class IntroFourth extends AppIntro {
   String? get imagePath => ImagePath.bg4;
 
   @override
-  String? get titleButton => 'Approved';
+  String? get titleButton => 'Continue';
 
 }
