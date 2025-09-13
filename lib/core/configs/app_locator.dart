@@ -1,4 +1,5 @@
 import 'package:get_it/get_it.dart';
+import '../../featured/feature_path.dart';
 import '../../core/core_path.dart';
 
 class AppLocator {
@@ -11,6 +12,8 @@ class AppLocator {
     setupThemes();
     LoggerHelper.debug(message: 'Setup App UI');
     setupSystemUI();
+    LoggerHelper.debug(message: 'Setup App Intro');
+    setupAppIntro();
   }
 
   void setupColors() {
@@ -30,5 +33,17 @@ class AppLocator {
     sl.registerLazySingleton<SystemUI>(() => SystemUIIntroImpl(), instanceName: 'Intro');
     sl.registerLazySingleton(() => SystemUIController(systemUIImpl: sl<SystemUI>(instanceName: 'Default')), instanceName: 'Default');
     sl.registerLazySingleton(() => SystemUIController(systemUIImpl: sl<SystemUI>(instanceName: 'Intro')), instanceName: 'Intro');
+  }
+
+  void setupAppIntro() {
+    sl.registerLazySingleton<AppIntro>(() => IntroFirst(), instanceName: 'First');
+    sl.registerLazySingleton<AppIntro>(() => IntroSecond(), instanceName: 'Second');
+    sl.registerLazySingleton<AppIntro>(() => IntroThird(), instanceName: 'Third');
+    sl.registerLazySingleton<AppIntro>(() => IntroFourth(), instanceName: 'Fourth');
+    sl.registerLazySingleton(() => IntroController(appIntro: sl<AppIntro>(instanceName: 'First')), instanceName: 'First');
+    sl.registerLazySingleton(() => IntroController(appIntro: sl<AppIntro>(instanceName: 'Second')), instanceName: 'Second');
+    sl.registerLazySingleton(() => IntroController(appIntro: sl<AppIntro>(instanceName: 'Third')), instanceName: 'Third');
+    sl.registerLazySingleton(() => IntroController(appIntro: sl<AppIntro>(instanceName: 'Fourth')), instanceName: 'Fourth');
+    sl.registerLazySingleton(() => IntroCubit());
   }
 }

@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
             theme: themeController.light,
             darkTheme: themeController.dark,
             themeMode: state.mode,
-            home: const HomePage(),
+            home: const IntroScreen(),
           ),
         );
       },
@@ -34,16 +34,3 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class HomePage extends StatelessWidget {
-  const HomePage({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Uira'),
-      ),
-      body: SettingThemeSection(),
-    );
-  }
-}

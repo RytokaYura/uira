@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
+import '../../../common/common_path.dart';
 
 class SettingItem extends StatelessWidget {
   final VoidCallback? onTap;
@@ -23,11 +24,9 @@ class SettingItem extends StatelessWidget {
         title: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text(title ?? 'Uira',
-              style: theme.textTheme.titleLarge!.copyWith(
-                color: colorTitle,
-                fontWeight: fontWeight,
-              ),
+            AppTitle(title: title ?? 'Uira',
+              color: colorTitle,
+              fontWeight: fontWeight,
             ),
 
             if(isDropdown != null)
