@@ -14,6 +14,9 @@ class AppLocator {
     setupSystemUI();
     LoggerHelper.debug(message: 'Setup App Intro');
     setupAppIntro();
+    LoggerHelper.debug(message: 'Setup App Permission');
+    setupPermission();
+
   }
 
   void setupColors() {
@@ -45,5 +48,13 @@ class AppLocator {
     sl.registerLazySingleton(() => IntroController(appIntro: sl<AppIntro>(instanceName: 'Third')), instanceName: 'Third');
     sl.registerLazySingleton(() => IntroController(appIntro: sl<AppIntro>(instanceName: 'Fourth')), instanceName: 'Fourth');
     sl.registerLazySingleton(() => IntroCubit());
+  }
+
+  void setupPermission() {
+    sl.registerLazySingleton<PermissionData>(() => TiramisuPermission(), instanceName: 'Tiramisu');
+    sl.registerLazySingleton<PermissionData>(() => LegacyPermission(), instanceName: 'Legacy');
+    sl.registerLazySingleton<AppPermission>(() => AndroidPermission(), instanceName: 'Android');
+    sl.registerLazySingleton(() => PermissionController(appPermission: sl<AppPermission>(instanceName: 'Android')), instanceName: 'Android');
+    sl.registerLazySingleton(() => PermissionCubit());
   }
 }

@@ -17,7 +17,6 @@ class IntroScreen extends StatelessWidget {
       SystemUiMode.manual,
       overlays: [SystemUiOverlay.top],
     );
-    final introHelper = IntroHelper(pageController: PageController());
     return AppOverlay(
       overlay: overlay,
       child: Scaffold(
@@ -25,6 +24,7 @@ class IntroScreen extends StatelessWidget {
           create: (_) => AppLocator.sl<IntroCubit>(),
           child: BlocBuilder<IntroCubit, IntroState>(
             builder: (context, state) {
+              final introHelper = IntroHelper(pageController: PageController(initialPage: state.index));
               return Stack(
                 fit: StackFit.expand,
                 children: [
