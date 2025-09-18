@@ -1,10 +1,43 @@
-import 'package:carousel_slider/carousel_slider.dart';
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
 import '../../../common/common_path.dart';
+import '../../feature_path.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  final MockVideo mockVideo = MockVideo();
+  final MockMusic mockMusic = MockMusic();
+
+  List<MockVideoModel> allVideo = [];
+  List<MockMusicModel> allMusic = [];
+  List<MockVideoModel> favoriteVideo = [];
+  List<MockMusicModel> favoriteMusic = [];
+
+  List<bool> isLongPress = [];
+  List<Map<String, dynamic>> combinedList = [];
+
+  bool isAuto = true;
+  int currentIndex = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    allVideo = List.of(mockVideo.data)..shuffle();
+    allMusic = List.of(mockMusic.data)..shuffle();
+
+    favoriteVideo = allVideo.take(min(4, mockVideo.data.length)).toList();
+    favoriteMusic = allMusic.take(min(5, mockMusic.data.length)).toList();
+
+    isLongPress = List.filled(favoriteVideo.length, false);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -12,193 +45,109 @@ class HomeScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text('Uira'),
         actions: [
-          AppIconButton(
-            onTap: () {},
-            icon: PhosphorIcons.magnifyingGlass(),
-          ),
-          SizedBox(width: 10.0,),
+          AppIconButton(onTap: () {}, icon: PhosphorIcons.magnifyingGlass()),
+          SizedBox(width: 10.0),
         ],
       ),
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            AppSection(title: 'Favorite'),
 
-            Padding(
-              padding: const EdgeInsets.only(left: 15.0),
-              child: AppTitle(
-                title: 'Favorite',
-              ),
-            ),
+            const SizedBox(height: 15.0),
 
-            Divider(
-              thickness: 1.8,
-              endIndent: 15.0,
-            ),
-
-            const SizedBox(height: 15.0,),
-
-            CarouselSlider.builder(
-              itemCount: 4,
-              options: CarouselOptions(
-                autoPlay: true,
-                enlargeCenterPage: true,
-                viewportFraction: .65,
-                aspectRatio: 2.5,
-                onPageChanged: (context, reason) {}
-              ),
-              itemBuilder: (context, index, pageIndex) => AppCardItem(
-                onTap: () {},
-                padding: EdgeInsets.zero,
-                content: Stack(
-                  fit: StackFit.expand,
-                  children: [
-                    AppImage(
-                      borderRadius: BorderRadius.circular(8.0),
-                    ),
-                    AppScrim(
-                      borderRadius: BorderRadius.circular(8.0),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-
-            GridView.builder(
-              shrinkWrap: true,
-              padding: EdgeInsets.all(15.0),
-              itemCount: 4,
-              physics: NeverScrollableScrollPhysics(),
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                childAspectRatio: 3.0,
-                crossAxisSpacing: 8.0,
-                mainAxisSpacing: 8.0
-              ),
-              itemBuilder: (BuildContext context, int index) {
-                if(index == 3) {
-                  return AppCardItem(
+            AppCarouselBuilder(
+              itemCount: min(4, favoriteVideo.length),
+              autoPlay: isAuto,
+              onPageChanged: (index, reason) =>
+                  setState(() => currentIndex = index),
+              itemBuilder: (context, index, pageIndex) {
+                final item = favoriteVideo[index];
+                final isActive = index == currentIndex;
+                return AppCarouselItem(
                   onTap: () {},
-                  borderRadius: BorderRadius.circular(5.0),
-                  content: Center(
-                    child: AppTitle(
-                      title: 'See all',
-                      size: 14.0,
-                      maxLines: 1,
-                    ),
-                  ),
-                );
-                }
-                return AppCardItem(
-                  onTap: () {},
-                  borderRadius: BorderRadius.circular(5.0),
-                  content: Row(
-                    spacing: 15.0,
-                    children: [
-                      AspectRatio(
-                        aspectRatio: 1.0,
-                        child: AppImage(borderRadius: BorderRadius.circular(3.0),),
-                      ),
-
-                      Flexible(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            AppTitle(
-                              title: 'Roman Picisan',
-                              size: 14.0,
-                              maxLines: 1,
-                            ),
-
-                            Row(
-                              children: [
-                                AppDescription(
-                                  title: 'Bintang Lima',
-                                  size: 13.0,
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ),
-
-                    ],
-                  ),
+                  onStart: (_) => setState(() {
+                    isLongPress[index] = true;
+                    isAuto = false;
+                  }),
+                  onEnd: (_) => setState(() {
+                    isLongPress[index] = false;
+                    isAuto = true;
+                  }),
+                  isLargeCenter: isActive,
+                  isLongPress: isLongPress[index],
+                  title: item.title,
+                  imageAsset: item.poster,
+                  description: item.description,
                 );
               },
             ),
 
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 15.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  AppTitle(
-                    title: 'Latest',
-                  ),
+            AppGridBuilder(
+              itemCount: min(4, favoriteMusic.length),
+              itemBuilder: (context, index) {
+                final item = favoriteMusic[index];
+                if (index == 3 && favoriteMusic.length > 4) {
+                  return AppCardAll();
+                }
+                return AppMusicItem(
+                  onTap: () {},
+                  title: item.title,
+                  artist: item.artist?.join(' · '),
+                  imageAsset: item.cover,
+                );
+              },
+            ),
 
-                  AppDescription(title: 'See all',),
-                ],
+            AppSection(title: 'Latest Video'),
+
+            const SizedBox(height: 15.0),
+
+            AspectRatio(
+              aspectRatio: 1.7,
+              child: AppListBuilder(
+                scrollDirection: Axis.horizontal,
+                count: min(5, allVideo.length),
+                physics: AlwaysScrollableScrollPhysics(),
+                builder: (context, index) {
+                  final item = allVideo[index];
+                  if(index == 4 && allVideo.length > 5) {
+                    return AppListAllHorizontalItem(
+                      onTap: () {},
+                    );
+                  }
+                  return AppListHorizontalItem(
+                    padding: EdgeInsets.only(left: 10.0, right: (index == min(5, allVideo.length) - 1 && allVideo.length >= 4) ? 10.0 : 0.0),
+                    onTap: () {},
+                    title: item.title,
+                    imageAsset: item.poster,
+                  );
+                },
               ),
             ),
 
-            Divider(
-              thickness: 1.8,
-              endIndent: 15.0,
-            ),
+            const SizedBox(height: 15.0),
+
+            AppSecondSection(title: 'Latest Music'),
 
             AppListBuilder(
-              count: 10,
+              count: min(10, allMusic.length),
               builder: (context, index) {
-                return AspectRatio(
-                  aspectRatio: 7.0,
-                  child: AppCardItem(
+                final item = allMusic[index];
+                return AppListVerticalItem(
+                  content: AppMusicItem(
                     onTap: () {},
                     borderRadius: BorderRadius.zero,
                     color: Colors.transparent,
-                    padding: EdgeInsets.symmetric(horizontal: 15.0, vertical: 5.0),
-                    content: Row(
-                      spacing: 15.0,
-                      children: [
-                        AspectRatio(
-                          aspectRatio: 1.0,
-                          child: AppImage(borderRadius: BorderRadius.circular(3.0),),
-                        ),
-
-                        Flexible(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              AppTitle(
-                                title: 'Roman Picisan',
-                                size: 16.0,
-                                maxLines: 1,
-                              ),
-
-                              Row(
-                                spacing: 5.0,
-                                children: [
-                                  AppDescription(
-                                    title: 'Bintang Lima',
-                                  ),
-
-                                  AppDescription(
-                                    title: '·',
-                                  ),
-
-                                  AppDescription(
-                                    title: 'Dewa 19',
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
-                        ),
-
-                      ],
+                    padding: EdgeInsets.symmetric(
+                      horizontal: 15.0,
+                      vertical: 5.0,
                     ),
+                    title: item.title,
+                    album: item.album,
+                    artist: item.artist?.join(' · '),
+                    imageAsset: item.cover,
                   ),
                 );
               },

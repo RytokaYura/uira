@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../common_path.dart';
+
 class AppCardItem extends StatelessWidget {
   final VoidCallback? onTap;
   final BorderRadius? borderRadius;
@@ -19,7 +21,7 @@ class AppCardItem extends StatelessWidget {
     return InkWell(
       onTap: onTap,
       borderRadius: radius,
-      highlightColor: highlightColor ?? theme.colorScheme.primary.withValues(alpha: .5),
+      highlightColor: highlightColor ?? theme.hintColor.withValues(alpha: .2),
       child: Container(
         width: width,
         height: height,
@@ -33,3 +35,24 @@ class AppCardItem extends StatelessWidget {
     );
   }
 }
+
+class AppCardAll extends StatelessWidget {
+  final VoidCallback? onTap;
+  const AppCardAll({super.key, this.onTap});
+
+  @override
+  Widget build(BuildContext context) {
+    return AppCardItem(
+      onTap: onTap,
+      borderRadius: BorderRadius.circular(5.0),
+      content: Center(
+        child: AppTitle(
+          title: 'See all',
+          size: 14.0,
+          maxLines: 1,
+        ),
+      ),
+    );
+  }
+}
+

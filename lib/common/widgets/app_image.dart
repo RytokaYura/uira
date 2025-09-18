@@ -11,7 +11,8 @@ class AppImage extends StatelessWidget {
   final int? cacheW;
   final int? cacheH;
   final FilterQuality? filterQuality;
-  const AppImage({super.key, this.borderRadius, this.assetPath, this.fit, this.width, this.height, this.cacheW, this.cacheH, this.filterQuality});
+  final IconData? iconData;
+  const AppImage({super.key, this.borderRadius, this.assetPath, this.fit, this.width, this.height, this.cacheW, this.cacheH, this.filterQuality, this.iconData});
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +25,7 @@ class AppImage extends StatelessWidget {
         cacheHeight: cacheH,
         cacheWidth: cacheW,
         filterQuality: filterQuality ?? FilterQuality.none,
-        errorBuilder: (context, error, stackTrace) => Icon(PhosphorIcons.image(PhosphorIconsStyle.fill)),
+        errorBuilder: (context, error, stackTrace) => Icon(iconData ?? PhosphorIcons.image(PhosphorIconsStyle.fill)),
       ),
     );
   }

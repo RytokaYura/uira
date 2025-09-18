@@ -17,7 +17,7 @@ class AppIconButton extends StatelessWidget {
     return InkWell(
       onTap: onTap,
       borderRadius: borderRadius ?? BorderRadius.circular(8.0),
-      highlightColor: highlightColor ?? theme.colorScheme.primary.withValues(alpha: .5),
+      highlightColor: highlightColor ?? theme.hintColor.withValues(alpha: .2),
       child: Padding(
         padding: padding ?? const EdgeInsets.all(5.0),
         child: Icon(icon ?? PhosphorIcons.arrowLeft(),

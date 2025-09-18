@@ -44,6 +44,7 @@ class AppTitle extends StatelessWidget {
       ),
       textAlign: textAlign,
       maxLines: maxLines,
+      overflow: TextOverflow.ellipsis,
     );
   }
 }
@@ -70,6 +71,7 @@ class AppDescription extends StatelessWidget {
       ),
       textAlign: textAlign,
       maxLines: maxLines,
+      overflow: TextOverflow.ellipsis,
     );
   }
 }

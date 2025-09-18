@@ -17,3 +17,9 @@
   <img src="assets/images/Screenshot/Intro/Intro4.png" width="150" alt="Intro 4">
 </p>
 
+### 🏠 Home Screen
+
+<p align="left">
+  <img src="assets/images/Screenshot/Home/HomeDark.png" width="150" alt="Home Dark">&nbsp;&nbsp;&nbsp;
+  <img src="assets/images/Screenshot/Home/HomeLight.png" width="150" alt="Home Light">;
+</p>

@@ -26,7 +26,7 @@ class ThemeImpl extends AppTheme {
       backgroundColor: color,
       elevation: 0.0,
       unselectedItemColor: unContent,
-      selectedItemColor: scheme.onPrimary,
+      selectedItemColor: scheme.onSurface,
       showSelectedLabels: false,
       showUnselectedLabels: false,
       type: BottomNavigationBarType.fixed,
