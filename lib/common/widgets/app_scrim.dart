@@ -11,12 +11,11 @@ class AppScrim extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
     return Container(
       width: width,
       height: height,
       decoration: BoxDecoration(
-        color: color ?? theme.colorScheme.scrim,
+        color: color ?? Colors.black.withValues(alpha: .75),
         borderRadius: borderRadius ?? BorderRadius.zero,
       ),
       padding: padding ?? EdgeInsets.zero,

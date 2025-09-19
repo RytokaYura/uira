@@ -4,7 +4,9 @@ import 'app_text.dart';
 
 class AppSection extends StatelessWidget {
   final String? title;
-  const AppSection({super.key, this.title});
+  final EdgeInsetsGeometry? titlePadding;
+  final double? endIndent;
+  const AppSection({super.key, this.title, this.titlePadding, this.endIndent});
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +15,7 @@ class AppSection extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Padding(
-          padding: const EdgeInsets.only(left: 15.0),
+          padding: titlePadding ?? const EdgeInsets.only(left: 15.0),
           child: AppTitle(
             title: title,
           ),
@@ -21,7 +23,7 @@ class AppSection extends StatelessWidget {
 
         Divider(
           thickness: 1.8,
-          endIndent: 15.0,
+          endIndent: endIndent ?? 15.0,
         ),
       ],
     );

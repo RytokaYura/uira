@@ -1,4 +1,5 @@
-import 'dart:ui';
+import 'package:flutter/material.dart';
+
 import '../color_path.dart';
 
 class LightColor extends ColorData {
@@ -13,4 +14,5 @@ class LightColor extends ColorData {
   @override Color get surface => const Color(0xFFE0E0E0);
   @override Color get success => const Color(0xFF0BA6DF);
   @override Color get warning => const Color(0xFFFAA533);
+  @override Color get scrim => Colors.black.withValues(alpha: .75);
 }

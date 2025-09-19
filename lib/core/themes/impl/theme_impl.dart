@@ -46,7 +46,7 @@ class ThemeImpl extends AppTheme {
       onPrimary: color.onPrimary,
       secondary: color.secondary,
       onSecondary: color.onPrimary,
-      scrim: Colors.black.withValues(alpha: .75),
+      scrim: color.scrim,
     );
   }
 

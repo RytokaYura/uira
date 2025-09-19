@@ -30,6 +30,7 @@ dependencies:
   mocktail: ^1.0.4
   bloc_test: ^10.0.0
   carousel_slider: ^5.1.1
+  audio_video_progress_bar: ^2.0.3
 
 dev_dependencies:
   flutter_test:

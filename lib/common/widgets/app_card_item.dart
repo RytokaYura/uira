@@ -32,6 +32,7 @@ class AppCardItem extends StatelessWidget {
           boxShadow: shadow,
         ),
         padding: padding ?? EdgeInsets.all(5.0),
+        margin: margin,
         child: content,
       ),
     );

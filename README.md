@@ -28,7 +28,9 @@
 
 <p align="left">
   <img src="assets/images/Screenshot/Music/MusicDark.png" width="150" alt="Music Dark">&nbsp;&nbsp;&nbsp;
-  <img src="assets/images/Screenshot/Music/MusicLight.png" width="150" alt="Music Light">
+  <img src="assets/images/Screenshot/Music/MusicLight.png" width="150" alt="Music Light">&nbsp;&nbsp;&nbsp;
+  <img src="assets/images/Screenshot/Music/MusicPlayerDark.png" width="150" alt="Music Player Dark">&nbsp;&nbsp;&nbsp;
+  <img src="assets/images/Screenshot/Music/MusicPlayerLight.png" width="150" alt="Music Player Light">
 </p>
 
 ### 📽️ Video Screen

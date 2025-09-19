@@ -11,6 +11,7 @@ abstract class ColorData {
   Color get success;
   Color get disabled;
   Color get hint;
+  Color get scrim;
 
   Color get onBackground;
   Color get onPrimary;

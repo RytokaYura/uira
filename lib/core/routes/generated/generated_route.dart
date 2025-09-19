@@ -14,6 +14,11 @@ class GeneratedRoute {
         builder: (context, state) => IntroScreen(),
       ),
 
+      GoRoute(
+        path: AppRoutePath.musicPlayer,
+        builder: (context, state) => MusicPlayerScreen(),
+      ),
+
       StatefulShellRoute.indexedStack(
         builder: (context, state, shell) => RouteScreen(shell: shell),
         branches: [

@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:uira/core/core_path.dart';
 import '../../../common/common_path.dart';
 import '../../feature_path.dart';
 
@@ -127,7 +128,7 @@ class _HomeScreenState extends State<HomeScreen> {
               final item = allMusic[index];
               return AppListVerticalItem(
                 content: AppMusicItem(
-                  onTap: () {},
+                  onTap: () => RouteHelper().goPush(context, AppRoutePath.musicPlayer),
                   borderRadius: BorderRadius.zero,
                   color: Colors.transparent,
                   padding: EdgeInsets.symmetric(
