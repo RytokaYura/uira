@@ -33,7 +33,7 @@ class GeneratedRoute {
               GoRoute(
                 path: AppRoutePath.music,
                 name: 'music',
-                builder: (context, state) => Container(),
+                builder: (context, state) => MusicScreen(),
               ),
             ],
           ),

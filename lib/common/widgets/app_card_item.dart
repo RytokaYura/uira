@@ -12,7 +12,8 @@ class AppCardItem extends StatelessWidget {
   final EdgeInsetsGeometry? padding;
   final EdgeInsetsGeometry? margin;
   final Widget? content;
-  const AppCardItem({super.key, this.onTap, this.borderRadius, this.highlightColor, this.width, this.height, this.color, this.padding, this.margin, this.content,});
+  final List<BoxShadow>? shadow;
+  const AppCardItem({super.key, this.onTap, this.borderRadius, this.highlightColor, this.width, this.height, this.color, this.padding, this.margin, this.content, this.shadow,});
 
   @override
   Widget build(BuildContext context) {
@@ -28,6 +29,7 @@ class AppCardItem extends StatelessWidget {
         decoration: BoxDecoration(
           borderRadius: radius,
           color: color ?? theme.colorScheme.surface.withValues(alpha: .5),
+          boxShadow: shadow,
         ),
         padding: padding ?? EdgeInsets.all(5.0),
         child: content,

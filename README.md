@@ -21,5 +21,12 @@
 
 <p align="left">
   <img src="assets/images/Screenshot/Home/HomeDark.png" width="150" alt="Home Dark">&nbsp;&nbsp;&nbsp;
-  <img src="assets/images/Screenshot/Home/HomeLight.png" width="150" alt="Home Light">;
+  <img src="assets/images/Screenshot/Home/HomeLight.png" width="150" alt="Home Light">
+</p>
+
+### 🎵 Music Screen 
+
+<p align="left">
+  <img src="assets/images/Screenshot/Music/MusicDark.png" width="150" alt="Music Dark">&nbsp;&nbsp;&nbsp;
+  <img src="assets/images/Screenshot/Music/MusicLight.png" width="150" alt="Music Light">
 </p>
