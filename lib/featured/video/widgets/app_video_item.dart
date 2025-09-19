@@ -1,26 +1,30 @@
 import 'package:flutter/material.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
+import 'package:uira/core/core_path.dart';
 
 import '../../../common/common_path.dart';
 
-class AppMusicItem extends StatelessWidget {
+class AppVideoItem extends StatelessWidget {
   final VoidCallback? onTap;
   final BorderRadius? borderRadius;
   final Color? color;
   final EdgeInsetsGeometry? padding;
   final String? imageAsset;
   final String? title;
-  final String? album;
-  final List<String>? artist;
-  const AppMusicItem({super.key, this.onTap, this.borderRadius, this.color, this.padding, this.imageAsset, this.title, this.album, this.artist, });
+  final List<String>? genre;
+  final Duration? duration;
+  const AppVideoItem({super.key, this.onTap, this.borderRadius, this.color, this.padding, this.imageAsset, this.title, this.genre, this.duration});
 
   @override
   Widget build(BuildContext context) {
     return AppCardItem(
       onTap: onTap,
-      borderRadius: borderRadius,
-      color: color,
-      padding: padding,
+      borderRadius: BorderRadius.zero,
+      color: Colors.transparent,
+      padding: EdgeInsets.symmetric(
+        horizontal: 15.0,
+        vertical: 5.0,
+      ),
       content: Row(
         spacing: 15.0,
         children: [
@@ -29,7 +33,7 @@ class AppMusicItem extends StatelessWidget {
             child: AppImage(
               assetPath: imageAsset,
               borderRadius: BorderRadius.circular(3.0),
-              iconData: PhosphorIcons.musicNotes(PhosphorIconsStyle.fill),
+              iconData: PhosphorIcons.filmReel(PhosphorIconsStyle.fill),
             ),
           ),
 
@@ -47,26 +51,26 @@ class AppMusicItem extends StatelessWidget {
                 Row(
                   spacing: 5.0,
                   children: [
-                    if(album != null)
+                    if(duration != null)
                       Flexible(
                         flex: 1,
                         child: AppDescription(
-                          title: album,
+                          title: duration?.toHourMinute(),
                           maxLines: 1,
                           size: 14.0,
                         ),
                       ),
 
-                    if(artist != null && album != null)
+                    if(duration != null && genre != null)
                       AppDescription(
                         title: '|',
                       ),
 
-                    if(artist != null)
+                    if(genre != null)
                       Flexible(
                         flex: 2,
                         child: AppDescription(
-                          title: artist?.join(' · '),
+                          title: genre?.join(' · '),
                           maxLines: 1,
                           size: 14.0,
                         ),

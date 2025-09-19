@@ -30,3 +30,10 @@
   <img src="assets/images/Screenshot/Music/MusicDark.png" width="150" alt="Music Dark">&nbsp;&nbsp;&nbsp;
   <img src="assets/images/Screenshot/Music/MusicLight.png" width="150" alt="Music Light">
 </p>
+
+### 📽️ Video Screen
+
+<p align="left">
+  <img src="assets/images/Screenshot/Video/VideoDark.png" width="150" alt="Video Dark">&nbsp;&nbsp;&nbsp;
+  <img src="assets/images/Screenshot/Video/VideoLight.png" width="150" alt="Video Light">
+</p>

@@ -78,13 +78,13 @@ class _HomeScreenState extends State<HomeScreen> {
             itemCount: min(4, favoriteMusic.length),
             itemBuilder: (context, index) {
               final item = favoriteMusic[index];
-              if (index == 3 && favoriteMusic.length > 4) {
+              if (index == min(4, favoriteMusic.length) - 1 && favoriteMusic.length > 4) {
                 return AppCardAll(onTap: () {},);
               }
               return AppMusicItem(
                 onTap: () {},
                 title: item.title,
-                artist: item.artist?.join(' · '),
+                artist: item.artist,
                 imageAsset: item.cover,
               );
             },
@@ -102,7 +102,7 @@ class _HomeScreenState extends State<HomeScreen> {
               physics: AlwaysScrollableScrollPhysics(),
               builder: (context, index) {
                 final item = allVideo[index];
-                if(index == 4 && allVideo.length > 5) {
+                if(index == min(5, allVideo.length) && allVideo.length > 5) {
                   return AppListAllHorizontalItem(
                     onTap: () {},
                   );
@@ -136,7 +136,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                   title: item.title,
                   album: item.album,
-                  artist: item.artist?.join(' · '),
+                  artist: item.artist,
                   imageAsset: item.cover,
                 ),
               );

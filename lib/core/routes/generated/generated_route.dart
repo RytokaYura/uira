@@ -43,7 +43,7 @@ class GeneratedRoute {
               GoRoute(
                 path: AppRoutePath.video,
                 name: 'video',
-                builder: (context, state) => Container(),
+                builder: (context, state) => VideoScreen(),
               ),
             ],
           ),

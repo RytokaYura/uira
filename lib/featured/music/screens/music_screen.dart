@@ -33,7 +33,7 @@ class _MusicScreenState extends State<MusicScreen> {
     return Scaffold(
       appBar: UiraAppBar(
         title: 'Music',
-        actions: [],
+        onTap: () {},
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -50,7 +50,7 @@ class _MusicScreenState extends State<MusicScreen> {
                 return AppMusicItem(
                   onTap: () {},
                   title: item.title,
-                  artist: item.artist?.join(' · '),
+                  artist: item.artist,
                   imageAsset: item.cover,
                 );
               },
@@ -73,7 +73,7 @@ class _MusicScreenState extends State<MusicScreen> {
                     ),
                     title: item.title,
                     album: item.album,
-                    artist: item.artist?.join(' · '),
+                    artist: item.artist,
                     imageAsset: item.cover,
                   ),
                 );
