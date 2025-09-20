@@ -15,6 +15,11 @@ class GeneratedRoute {
       ),
 
       GoRoute(
+        path: AppRoutePath.videoPlayer,
+        builder: (context, state) => VideoPlayerScreen(),
+      ),
+
+      GoRoute(
         path: AppRoutePath.musicPlayer,
         builder: (context, state) => MusicPlayerScreen(),
       ),

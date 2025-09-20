@@ -110,7 +110,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 }
                 return AppListHorizontalItem(
                   padding: EdgeInsets.only(left: 10.0, right: (index == min(5, allVideo.length) - 1 && allVideo.length >= 4) ? 10.0 : 0.0),
-                  onTap: () {},
+                  onTap: () => RouteHelper().goPush(context, AppRoutePath.videoPlayer),
                   title: item.title,
                   imageAsset: item.poster,
                 );

@@ -34,9 +34,9 @@ class AppLocator {
 
   void setupSystemUI() {
     sl.registerLazySingleton<SystemUI>(() => SystemUIImpl(colorController: sl<ColorController>()), instanceName: 'Default');
-    sl.registerLazySingleton<SystemUI>(() => SystemUIIntroImpl(), instanceName: 'Intro');
+    sl.registerLazySingleton<SystemUI>(() => SystemUIFullImpl(), instanceName: 'Full');
     sl.registerLazySingleton(() => SystemUIController(systemUIImpl: sl<SystemUI>(instanceName: 'Default')), instanceName: 'Default');
-    sl.registerLazySingleton(() => SystemUIController(systemUIImpl: sl<SystemUI>(instanceName: 'Intro')), instanceName: 'Intro');
+    sl.registerLazySingleton(() => SystemUIController(systemUIImpl: sl<SystemUI>(instanceName: 'Full')), instanceName: 'Full');
   }
 
   void setupAppIntro() {

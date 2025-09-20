@@ -6,4 +6,5 @@ class AppRoutePath {
   static const String setting = '/setting';
 
   static const String musicPlayer = '/music-player';
+  static const String videoPlayer = '/video-player';
 }

@@ -34,8 +34,10 @@
 </p>
 
 ### 📽️ Video Screen
-
+ 
 <p align="left">
   <img src="assets/images/Screenshot/Video/VideoDark.png" width="150" alt="Video Dark">&nbsp;&nbsp;&nbsp;
-  <img src="assets/images/Screenshot/Video/VideoLight.png" width="150" alt="Video Light">
+  <img src="assets/images/Screenshot/Video/VideoLight.png" width="150" alt="Video Light">&nbsp;&nbsp;&nbsp;
+  <img src="assets/images/Screenshot/Video/VideoPlayerPortrait.png" width="150" alt="Video Player Potrait">&nbsp;&nbsp;&nbsp;
+  <img src="assets/images/Screenshot/Video/VideoPlayerLandscape.png" width="150" alt="Video Player Landscape">
 </p>

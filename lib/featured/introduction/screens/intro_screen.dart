@@ -11,7 +11,7 @@ class IntroScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final brightness = context.watch<ThemeCubit>().state.themeBrightness;
-    final overlay = AppLocator.sl<SystemUIController>(instanceName: 'Intro').getOverlayStyle(brightness: brightness);
+    final overlay = AppLocator.sl<SystemUIController>(instanceName: 'Full').getOverlayStyle(brightness: brightness);
 
     SystemChrome.setEnabledSystemUIMode(
       SystemUiMode.manual,

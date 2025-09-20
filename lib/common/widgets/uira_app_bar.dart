@@ -11,7 +11,8 @@ class UiraAppBar extends StatelessWidget implements PreferredSizeWidget {
   final VoidCallback? onTap;
   final IconData? iconData;
   final bool? centerTitle;
-  const UiraAppBar({super.key, this.isBack, this.title, this.actions, this.onTap, this.iconData, this.centerTitle,});
+  final Color? color;
+  const UiraAppBar({super.key, this.isBack, this.title, this.actions, this.onTap, this.iconData, this.centerTitle, this.color,});
 
   @override
   Widget build(BuildContext context) {
@@ -21,6 +22,7 @@ class UiraAppBar extends StatelessWidget implements PreferredSizeWidget {
       leading: onBack ? AppIconButton(onTap: () => RouteHelper().goBack(context), icon: PhosphorIcons.arrowLeft(PhosphorIconsStyle.regular),) : null,
       title: Text(title ?? 'Uira'),
       centerTitle: centerTitle,
+      backgroundColor: color,
       actions: actions ?? [
         AppIconButton(onTap: onTap, icon: iconData ?? PhosphorIcons.magnifyingGlass()),
         SizedBox(width: 10.0),

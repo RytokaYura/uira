@@ -20,7 +20,7 @@ class SystemUIImpl extends SystemUI {
   }
 }
 
-class SystemUIIntroImpl extends SystemUI {
+class SystemUIFullImpl extends SystemUI {
   @override
   SystemUiOverlayStyle getOverlayStyle({required Brightness brightness}) {
     return SystemUiOverlayStyle(
