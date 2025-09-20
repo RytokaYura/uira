@@ -51,6 +51,7 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
     });
   }
 
+
   @override
   void initState() {
     super.initState();
@@ -58,6 +59,9 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
       DeviceOrientation.landscapeLeft,
       DeviceOrientation.landscapeRight,
     ]);
+    SystemChrome.setEnabledSystemUIMode(
+      SystemUiMode.immersiveSticky,
+    );
   }
 
   @override
@@ -78,9 +82,6 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
     final overlay = AppLocator.sl<SystemUIController>(instanceName: 'Full').getOverlayStyle(brightness: brightness);
 
     final background = AppLocator.sl<ColorController>().getColor(brightness: Brightness.dark).background;
-    SystemChrome.setEnabledSystemUIMode(
-      SystemUiMode.immersiveSticky,
-    );
     return AppOverlay(
       overlay: overlay,
       child: Scaffold(
@@ -292,16 +293,8 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
                           ),
                         ],
                       ),
-                      ProgressBar(
-                        progress: Duration(minutes: 36, seconds: 20),
-                        total: Duration(minutes: 110,),
-                        barHeight: 3.0,
-                        thumbRadius: 5.0,
-                        timeLabelTextStyle: theme.textTheme.titleMedium!.copyWith(
-                          color: theme.hintColor,
-                          fontWeight: FontWeight.normal,
-                          fontSize: 14.0,
-                        ),
+                      AppProgressBar(
+                        timeLabelType: TimeLabelType.totalTime,
                       ),
                     ],
                   ),

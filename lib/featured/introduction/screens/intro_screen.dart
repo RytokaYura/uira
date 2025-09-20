@@ -5,18 +5,34 @@ import '../../../core/core_path.dart';
 import '../../../common/common_path.dart';
 import '../intro_path.dart';
 
-class IntroScreen extends StatelessWidget {
+class IntroScreen extends StatefulWidget {
   const IntroScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    final brightness = context.watch<ThemeCubit>().state.themeBrightness;
-    final overlay = AppLocator.sl<SystemUIController>(instanceName: 'Full').getOverlayStyle(brightness: brightness);
+  State<IntroScreen> createState() => _IntroScreenState();
+}
 
+class _IntroScreenState extends State<IntroScreen> {
+  @override
+  void initState() {
+    super.initState();
     SystemChrome.setEnabledSystemUIMode(
       SystemUiMode.manual,
       overlays: [SystemUiOverlay.top],
     );
+  }
+
+  @override
+  void dispose() {
+    SystemChrome.setEnabledSystemUIMode(
+      SystemUiMode.edgeToEdge,
+    );
+    super.dispose();
+  }
+  @override
+  Widget build(BuildContext context) {
+    final brightness = context.watch<ThemeCubit>().state.themeBrightness;
+    final overlay = AppLocator.sl<SystemUIController>(instanceName: 'Full').getOverlayStyle(brightness: brightness);
     return AppOverlay(
       overlay: overlay,
       child: Scaffold(

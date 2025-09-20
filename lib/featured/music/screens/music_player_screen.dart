@@ -81,16 +81,8 @@ class MusicPlayerScreen extends StatelessWidget {
 
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 25.0),
-            child: ProgressBar(
-              progress: Duration(minutes: 1, seconds: 20),
-              total: mockMusic.data[2].duration!,
-              barHeight: 3.0,
-              thumbRadius: 5.0,
-              timeLabelTextStyle: theme.textTheme.titleMedium!.copyWith(
-                color: theme.hintColor,
-                fontWeight: FontWeight.normal,
-                fontSize: 14.0,
-              ),
+            child: AppProgressBar(
+              timeLabelLocation: TimeLabelLocation.sides,
             ),
           ),
 

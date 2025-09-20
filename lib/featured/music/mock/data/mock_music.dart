@@ -11,6 +11,7 @@ class MockMusic {
       duration: const Duration(minutes: 3, seconds: 45),
       release: DateTime(2025),
       cover: ImagePath.unraveling,
+      filePath: MusicAssetPath.unraveling,
     ),
     MockMusicModel(
       title: 'Whispers in the Dark',
@@ -20,6 +21,7 @@ class MockMusic {
       duration: const Duration(minutes: 2, seconds: 58),
       release: DateTime(2025),
       cover: ImagePath.whispers,
+      filePath: MusicAssetPath.whispers,
     ),
     MockMusicModel(
       title: 'Motel Room 13',
@@ -29,6 +31,7 @@ class MockMusic {
       duration: const Duration(minutes: 3, seconds: 20),
       release: DateTime(2025),
       cover: ImagePath.motel,
+      filePath: MusicAssetPath.motel,
     ),
     MockMusicModel(
       title: 'Shadows of the Past',
@@ -38,6 +41,7 @@ class MockMusic {
       duration: const Duration(minutes: 3, seconds: 5),
       release: DateTime(2025),
       cover: ImagePath.shadow,
+      filePath: MusicAssetPath.shadows,
     ),
     MockMusicModel(
       title: 'Echoes of the Astras',
@@ -47,6 +51,7 @@ class MockMusic {
       duration: const Duration(minutes: 4, seconds: 15),
       release: DateTime(2025),
       cover: ImagePath.echoes,
+      filePath: MusicAssetPath.echoes,
     ),
     MockMusicModel(
       title: 'Neon Dharma',
@@ -56,6 +61,7 @@ class MockMusic {
       duration: const Duration(minutes: 3, seconds: 30),
       release: DateTime(2025),
       cover: ImagePath.dharma,
+      filePath: MusicAssetPath.dharma,
     ),
   ];
 }

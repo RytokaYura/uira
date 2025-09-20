@@ -6,6 +6,7 @@ class MockMusicModel {
   final DateTime? release;
   final Duration? duration;
   final String? cover;
+  final String? filePath;
 
-  MockMusicModel({this.title, this.artist, this.album, this.genre, this.release, this.duration, this.cover});
+  MockMusicModel({this.title, this.artist, this.album, this.genre, this.release, this.duration, this.cover, this.filePath});
 }

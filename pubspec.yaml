@@ -47,6 +47,7 @@ flutter:
     - assets/images/backgrounds/
     - assets/images/poster/
     - assets/images/cover/
+    - assets/musics/
 
   fonts:
     - family: 'Ubuntu'

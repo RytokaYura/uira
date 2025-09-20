@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:uira/common/common_path.dart';
 import 'package:uira/core/core_path.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-
+  SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+    DeviceOrientation.portraitDown,
+  ]);
   await AppInitializer().setup();
 }
 

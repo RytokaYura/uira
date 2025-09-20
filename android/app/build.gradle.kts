@@ -37,8 +37,21 @@ android {
             signingConfig = signingConfigs.getByName("debug")
         }
     }
+
+    dependencies {
+        implementation("androidx.media3:media3-exoplayer:1.8.0")
+        implementation("androidx.media3:media3-exoplayer-dash:1.8.0")
+        testImplementation("org.junit.jupiter:junit-jupiter-api:5.10.2")
+        testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.10.2")
+
+        testImplementation("org.mockito:mockito-core:4.11.0")
+        testImplementation("org.mockito.kotlin:mockito-kotlin:4.1.0")
+    }
 }
 
 flutter {
     source = "../.."
+}
+dependencies {
+    implementation(kotlin("test"))
 }
