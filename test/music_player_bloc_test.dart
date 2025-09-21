@@ -39,7 +39,7 @@ void main() {
   blocTest<MusicPlayerBloc, MusicPlayerState>(
     'should emit [MusicPlayerLoading, MusicPlaybackState] when a new playlist is played',
     setUp: () {
-      when(() => mockAppPlayer.loadMedia(any())).thenAnswer((_) async => true);
+      when(() => mockAppPlayer.loadMediaFromRaw(any())).thenAnswer((_) async => true);
       when(() => mockAppPlayer.play()).thenAnswer((_) async {});
     },
     build: () => musicPlayerBloc,
@@ -49,7 +49,7 @@ void main() {
       isA<MusicPlaybackState>(),
     ],
     verify: (_) {
-      verify(() => mockAppPlayer.loadMedia(mockPlaylist[0].filePath!)).called(1);
+      verify(() => mockAppPlayer.loadMediaFromRaw(mockPlaylist[0].filePath!)).called(1);
       verify(() => mockAppPlayer.play()).called(1);
     },
   );
@@ -83,7 +83,7 @@ void main() {
       isPlaying: true,
     ),
     setUp: () {
-      when(() => mockAppPlayer.loadMedia(any())).thenAnswer((_) async => true);
+      when(() => mockAppPlayer.loadMediaFromRaw(any())).thenAnswer((_) async => true);
       when(() => mockAppPlayer.play()).thenAnswer((_) async {});
     },
     build: () => musicPlayerBloc,
@@ -101,7 +101,7 @@ void main() {
       isA<MusicPlaybackState>().having((state) => state.currentIndex, 'currentIndex', 1),
     ],
     verify: (_) {
-      verify(() => mockAppPlayer.loadMedia(mockPlaylist[1].filePath!)).called(1);
+      verify(() => mockAppPlayer.loadMediaFromRaw(mockPlaylist[1].filePath!)).called(1);
     },
   );
 }

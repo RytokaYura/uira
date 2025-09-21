@@ -32,7 +32,10 @@ class PlayerProvider implements AppPlayer {
   Future<bool> isReleased() async => await _channel.invokeMethod('isReleased') ?? false;
 
   @override
-  Future<bool> loadMedia(String filename) async => await _channel.invokeMethod<bool>('loadMediaFromRaw', {'fileName': filename,}) ?? false;
+  Future<bool> loadMediaFromRaw(String filename) async => await _channel.invokeMethod<bool>('loadMediaFromRaw', {'fileName': filename,}) ?? false;
+
+  @override
+  Future<bool> loadMediaAsset(String path) async => await _channel.invokeMethod<bool>('loadMediaFromAsset', {'assetPath': path,}) ?? false;
 
   @override
   Future<void> pause() async => await _channel.invokeMethod('pause');

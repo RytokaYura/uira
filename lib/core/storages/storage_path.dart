@@ -1,0 +1,1 @@
+export './abstract/base_data.dart';

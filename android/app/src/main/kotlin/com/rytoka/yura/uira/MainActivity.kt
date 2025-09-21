@@ -26,7 +26,6 @@ class MainActivity : FlutterActivity() {
         playerController = PlayerController(playerProvider)
         playerController?.getMethodPlayer(flutterEngine)
         playerController?.getEventPlayer(flutterEngine)
-
     }
 
     override fun onDestroy() {

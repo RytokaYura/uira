@@ -3,11 +3,13 @@ package com.rytoka.yura.uira.player.providers
 import android.annotation.SuppressLint
 import android.content.ContentResolver
 import android.content.Context
+import android.net.Uri
 import android.util.Log
 import androidx.media3.exoplayer.ExoPlayer
 import com.rytoka.yura.uira.player.interfaces.AppPlayer
 import androidx.core.net.toUri
 import androidx.media3.common.MediaItem
+import java.io.File
 
 class PlayerProvider(private val context: Context): AppPlayer {
     private var exoPlayer: ExoPlayer? = null
@@ -37,6 +39,20 @@ class PlayerProvider(private val context: Context): AppPlayer {
             return true
         } catch (e: Exception) {
             Log.e("PlayerProvider", "Failed to load media: ${e.message}")
+            return false
+        }
+    }
+
+    override fun loadMediaAsset(path: String): Boolean {
+        try {
+            if(isReleased) initialize()
+
+            val mediaItem = MediaItem.fromUri(Uri.fromFile(File(path)))
+            exoPlayer?.setMediaItem(mediaItem)
+            exoPlayer?.prepare()
+            return true
+        } catch (e: Exception) {
+            Log.e("PlayerProvider", "Failed to load media from asset: ${e.message}")
             return false
         }
     }

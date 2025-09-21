@@ -1,7 +1,9 @@
 package com.rytoka.yura.uira.player.interfaces
 
+
 interface AppPlayer {
     fun loadMediaFromRaw(fileName: String): Boolean
+    fun loadMediaAsset(path: String): Boolean
     fun play()
     fun reset()
     fun pause()

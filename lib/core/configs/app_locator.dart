@@ -74,6 +74,6 @@ class AppLocator {
   }
 
   void setupMusicPlayer() {
-    sl.registerLazySingleton(() => MusicPlayerBloc(appPlayer: sl<AppPlayer>()));
+    sl.registerLazySingleton(() => MusicPlayerBloc<MockMusicModel>(appPlayer: sl<AppPlayer>()));
   }
 }

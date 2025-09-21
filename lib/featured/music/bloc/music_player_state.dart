@@ -1,24 +1,19 @@
 part of 'music_player_bloc.dart';
 
-enum RepeatMode {
-  none,
-  one,
-  all
-}
-
 @immutable
 sealed class MusicPlayerState {}
 
 final class MusicPlayerInitial extends MusicPlayerState {}
 final class MusicPlayerLoading extends MusicPlayerState {}
 
-final class MusicPlaybackState<T> extends MusicPlayerState {
+final class MusicPlaybackState<T extends BaseData> extends MusicPlayerState {
   final Duration position;
   final Duration duration;
   final List<T> playlist;
   final int currentIndex;
   final bool isShuffleActive;
   final RepeatMode repeatMode;
+  final PlayBackCycleMode cycleMode;
   final bool isPlaying;
 
   MusicPlaybackState({
@@ -27,7 +22,8 @@ final class MusicPlaybackState<T> extends MusicPlayerState {
     required this.playlist,
     required this.currentIndex,
     this.isShuffleActive = false,
-    this.repeatMode = RepeatMode.none,
+    this.repeatMode = RepeatMode.all,
+    this.cycleMode = PlayBackCycleMode.sequential,
     required this.isPlaying,
   });
 
@@ -40,8 +36,9 @@ final class MusicPlaybackState<T> extends MusicPlayerState {
     int? currentIndex,
     bool? isShuffleActive,
     RepeatMode? repeatMode,
+    PlayBackCycleMode? cycleMode,
     bool? isPlaying,
-  }){
+  }) {
     return MusicPlaybackState(
       position: position ?? this.position,
       duration: duration ?? this.duration,
@@ -49,6 +46,7 @@ final class MusicPlaybackState<T> extends MusicPlayerState {
       currentIndex: currentIndex ?? this.currentIndex,
       isShuffleActive: isShuffleActive ?? this.isShuffleActive,
       repeatMode: repeatMode ?? this.repeatMode,
+      cycleMode: cycleMode ?? this.cycleMode,
       isPlaying: isPlaying ?? this.isPlaying,
     );
   }

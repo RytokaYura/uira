@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:uira/featured/feature_path.dart';
 import 'package:uira/main.dart';
 import '../core_path.dart';
 
@@ -33,6 +34,7 @@ class AppInitializer {
           BlocProvider(create: (_) => AppLocator.sl<RouteCubit>()),
           BlocProvider(create: (_) => AppLocator.sl<ThemeCubit>()),
           BlocProvider(create: (_) => AppLocator.sl<PermissionCubit>()),
+          BlocProvider(create: (_) => AppLocator.sl<MusicPlayerBloc<MockMusicModel>>()),
         ],
         child: MyApp(initialRoute: initialRoute,),
       ),

@@ -23,6 +23,15 @@ class PlayerController(private val appPlayer: AppPlayer) {
                     val success = loadMediaFromRaw(fileName)
                     result.success(success)
                 }
+                "loadMediaFromAsset" -> {
+                    val assetPath = call.argument<String>("assetPath")
+                    if (assetPath == null) {
+                        result.error("INVALID_ARGUMENT", "assetPath is null", null)
+                        return@setMethodCallHandler
+                    }
+                    val success = appPlayer.loadMediaAsset(assetPath)
+                    result.success(success)
+                }
                 "play" -> { play(); result.success(null) }
                 "reset" -> { reset(); result.success(null) }
                 "pause" -> { pause(); result.success(null) }
@@ -83,6 +92,7 @@ class PlayerController(private val appPlayer: AppPlayer) {
 
     fun dispose() {
         handler.removeCallbacks(runnable)
+        appPlayer.release()
     }
 
     fun loadMediaFromRaw(fileName: String): Boolean {

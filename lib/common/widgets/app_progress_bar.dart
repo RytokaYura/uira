@@ -8,18 +8,20 @@ class AppProgressBar extends StatelessWidget {
   final TimeLabelType? timeLabelType;
   final double? barHeight;
   final double? thumbRadius;
-  const AppProgressBar({super.key, this.progress, this.total, this.timeLabelLocation, this.timeLabelType, this.barHeight, this.thumbRadius,});
+  final Function(Duration duration)? onSeek;
+  const AppProgressBar({super.key, this.progress, this.total, this.timeLabelLocation, this.timeLabelType, this.barHeight, this.thumbRadius, this.onSeek,});
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     return ProgressBar(
       progress: progress ?? Duration(minutes: 0,),
-      total: total ?? Duration(minutes: 3, seconds: 45),
+      total: total ?? Duration(seconds: 0),
       timeLabelLocation: timeLabelLocation ?? TimeLabelLocation.sides,
       timeLabelType: timeLabelType,
       barHeight: barHeight ?? 3.0,
       thumbRadius: thumbRadius ?? 5.0,
+      onSeek: onSeek,
       timeLabelTextStyle: theme.textTheme.titleMedium!.copyWith(
         color: theme.hintColor,
         fontWeight: FontWeight.normal,

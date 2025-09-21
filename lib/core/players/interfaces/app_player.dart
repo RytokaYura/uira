@@ -2,7 +2,8 @@ import '../player_path.dart';
 
 abstract class AppPlayer {
   Stream<PlayBackEvent> get playbackEventStream;
-  Future<bool> loadMedia(String filename);
+  Future<bool> loadMediaFromRaw(String filename);
+  Future<bool> loadMediaAsset(String path);
   Future<void> play();
   Future<void> reset();
   Future<void> pause();

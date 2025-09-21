@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:uira/core/core_path.dart';
 import '../../../common/common_path.dart';
 import '../../feature_path.dart';
@@ -83,7 +84,15 @@ class _HomeScreenState extends State<HomeScreen> {
                 return AppCardAll(onTap: () {},);
               }
               return AppMusicItem(
-                onTap: () {},
+                onTap: () {
+                  context.read<MusicPlayerBloc<MockMusicModel>>().add(
+                    MusicNewPlayListRequested(
+                      playlist: allMusic,
+                      startIndex: index,
+                    ),
+                  );
+                  RouteHelper().goPush(context, AppRoutePath.musicPlayer);
+                },
                 title: item.title,
                 artist: item.artist,
                 imageAsset: item.cover,
@@ -128,7 +137,15 @@ class _HomeScreenState extends State<HomeScreen> {
               final item = allMusic[index];
               return AppListVerticalItem(
                 content: AppMusicItem(
-                  onTap: () => RouteHelper().goPush(context, AppRoutePath.musicPlayer),
+                  onTap: () {
+                    context.read<MusicPlayerBloc<MockMusicModel>>().add(
+                      MusicNewPlayListRequested(
+                        playlist: allMusic,
+                        startIndex: index,
+                      ),
+                    );
+                    RouteHelper().goPush(context, AppRoutePath.musicPlayer);
+                  },
                   borderRadius: BorderRadius.zero,
                   color: Colors.transparent,
                   padding: EdgeInsets.symmetric(

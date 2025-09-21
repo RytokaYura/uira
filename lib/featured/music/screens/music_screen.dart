@@ -1,8 +1,10 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../common/common_path.dart';
+import '../../../core/core_path.dart';
 import '../music_path.dart';
 
 class MusicScreen extends StatefulWidget {
@@ -48,7 +50,15 @@ class _MusicScreenState extends State<MusicScreen> {
                   return AppCardAll(onTap: () {},);
                 }
                 return AppMusicItem(
-                  onTap: () {},
+                  onTap: () {
+                    context.read<MusicPlayerBloc<MockMusicModel>>().add(
+                      MusicNewPlayListRequested(
+                        playlist: allMusic,
+                        startIndex: index,
+                      ),
+                    );
+                    RouteHelper().goPush(context, AppRoutePath.musicPlayer);
+                  },
                   title: item.title,
                   artist: item.artist,
                   imageAsset: item.cover,
@@ -64,7 +74,15 @@ class _MusicScreenState extends State<MusicScreen> {
                 final item = allMusic[index];
                 return AppListVerticalItem(
                   content: AppMusicItem(
-                    onTap: () {},
+                    onTap: () {
+                      context.read<MusicPlayerBloc<MockMusicModel>>().add(
+                        MusicNewPlayListRequested(
+                          playlist: allMusic,
+                          startIndex: index,
+                        ),
+                      );
+                      RouteHelper().goPush(context, AppRoutePath.musicPlayer);
+                    },
                     borderRadius: BorderRadius.zero,
                     color: Colors.transparent,
                     padding: EdgeInsets.symmetric(
