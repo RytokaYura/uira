@@ -5,3 +5,4 @@ export './themes/theme_path.dart';
 export './ui/ui_path.dart';
 export './permissions/permission_path.dart';
 export './routes/route_path.dart';
+export './players/player_path.dart';

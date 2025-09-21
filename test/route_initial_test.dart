@@ -2,7 +2,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:uira/core/core_path.dart';
 
-import 'src/core/providers/MockRouteProvider.dart';
+import 'src/core/providers/mock_route_provider.dart';
 
 void main() {
   late RouteController routeController;

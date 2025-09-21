@@ -39,7 +39,6 @@ class PlayerProvider(private val context: Context): AppPlayer {
             Log.e("PlayerProvider", "Failed to load media: ${e.message}")
             return false
         }
-
     }
 
     private fun validateResourceID(resourceId: Int) {

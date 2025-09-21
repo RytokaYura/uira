@@ -18,6 +18,10 @@ class AppLocator {
     setupSystemUI();
     LoggerHelper.debug(message: 'Setup App Intro');
     setupAppIntro();
+    LoggerHelper.debug(message: 'Setup App Player');
+    setupPlayer();
+    LoggerHelper.debug(message: 'Setup Music Player');
+    setupMusicPlayer();
   }
 
   void setupColors() {
@@ -63,5 +67,13 @@ class AppLocator {
     sl.registerLazySingleton<AppRoute>(() => RouteProvider());
     sl.registerLazySingleton(() => RouteController(appRoute: sl<AppRoute>()));
     sl.registerLazySingleton(() => RouteCubit());
+  }
+
+  void setupPlayer() {
+    sl.registerLazySingleton<AppPlayer>(() => PlayerProvider());
+  }
+
+  void setupMusicPlayer() {
+    sl.registerLazySingleton(() => MusicPlayerBloc(appPlayer: sl<AppPlayer>()));
   }
 }
