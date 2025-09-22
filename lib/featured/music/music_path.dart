@@ -11,3 +11,5 @@ export './widgets/music_credit_info.dart';
 export './widgets/music_control.dart';
 export './widgets/music_cover.dart';
 export './widgets/music_section.dart';
+export './widgets/music_player_bar.dart';
+export './widgets/favorite_list_music.dart';

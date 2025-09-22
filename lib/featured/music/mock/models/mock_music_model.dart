@@ -1,6 +1,7 @@
 import 'package:uira/core/core_path.dart';
 
-class MockMusicModel extends BaseData{
+class MockMusicModel extends BaseData {
+  final String? id;
   final String? title;
   final List<String>? artist;
   final String? album;
@@ -10,5 +11,5 @@ class MockMusicModel extends BaseData{
   @override
   final String? filePath;
 
-  MockMusicModel({this.title, this.artist, this.album, this.genre, this.release, this.cover, this.filePath});
+  MockMusicModel({this.id, this.title, this.artist, this.album, this.genre, this.release, this.cover, this.filePath});
 }

@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -7,31 +5,21 @@ import '../../../common/common_path.dart';
 import '../../../core/core_path.dart';
 import '../music_path.dart';
 
-class MusicScreen extends StatefulWidget {
+class MusicScreen extends StatelessWidget {
   const MusicScreen({super.key});
 
-  @override
-  State<MusicScreen> createState() => _MusicScreenState();
-}
 
-class _MusicScreenState extends State<MusicScreen> {
-  final MockMusic mockMusic = MockMusic();
-
-  List<MockMusicModel> allMusic = [];
-  List<MockMusicModel> favoriteMusic = [];
-
-  List<bool> isLongPress = [];
-  List<Map<String, dynamic>> combinedList = [];
-
-  @override
-  void initState() {
-    super.initState();
-    allMusic = List.of(mockMusic.data)..shuffle();
-
-    favoriteMusic = allMusic.take(min(5, mockMusic.data.length)).toList();
-  }
   @override
   Widget build(BuildContext context) {
+    final MockMusic mockMusic = MockMusic();
+
+    final playbackState = context.select((MusicPlayerBloc<MockMusicModel> bloc) {
+          final state = bloc.state;
+          return state is MusicPlaybackState<MockMusicModel> ? state : null;}
+    );
+
+    final theme = Theme.of(context);
+
     return Scaffold(
       appBar: UiraAppBar(
         title: 'Music',
@@ -40,51 +28,29 @@ class _MusicScreenState extends State<MusicScreen> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            AppSection(title: 'Favorite',),
+            const AppSection(title: 'Favorite',),
 
-            AppGridBuilder(
-              itemCount: min(4, favoriteMusic.length),
-              itemBuilder: (context, index) {
-                final item = favoriteMusic[index];
-                if (index == 3 && favoriteMusic.length > 4) {
-                  return AppCardAll(onTap: () {},);
-                }
-                return AppMusicItem(
-                  onTap: () {
-                    context.read<MusicPlayerBloc<MockMusicModel>>().add(
-                      MusicNewPlayListRequested(
-                        playlist: allMusic,
-                        startIndex: index,
-                      ),
-                    );
-                    RouteHelper().goPush(context, AppRoutePath.musicPlayer);
-                  },
-                  title: item.title,
-                  artist: item.artist,
-                  imageAsset: item.cover,
-                );
-              },
-            ),
+            const FavoriteListMusic(),
 
-            AppSection(title: 'All Music'),
+            const AppSection(title: 'All Music'),
 
             AppListBuilder(
-              count: allMusic.length,
+              count: mockMusic.data.length,
               builder: (context, index) {
-                final item = allMusic[index];
+                final item = mockMusic.data[index];
                 return AppListVerticalItem(
                   content: AppMusicItem(
                     onTap: () {
                       context.read<MusicPlayerBloc<MockMusicModel>>().add(
                         MusicNewPlayListRequested(
-                          playlist: allMusic,
+                          playlist: mockMusic.data,
                           startIndex: index,
                         ),
                       );
                       RouteHelper().goPush(context, AppRoutePath.musicPlayer);
                     },
                     borderRadius: BorderRadius.zero,
-                    color: Colors.transparent,
+                    color: playbackState?.currentSong.id == item.id ? theme.colorScheme.primary.withValues(alpha: .5) : Colors.transparent,
                     padding: EdgeInsets.symmetric(
                       horizontal: 15.0,
                       vertical: 5.0,
@@ -97,6 +63,7 @@ class _MusicScreenState extends State<MusicScreen> {
                 );
               },
             ),
+            const SizedBox(height: 100.0),
           ],
         ),
       ),

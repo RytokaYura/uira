@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:uira/common/common_path.dart';
+import 'package:uira/featured/feature_path.dart';
 import '../../core_path.dart';
 
 class RouteScreen extends StatelessWidget {
@@ -20,7 +21,14 @@ class RouteScreen extends StatelessWidget {
             canPop: false,
             onPopInvokedWithResult: (didPop, result) => bottomRouteHelper.onPop(didPop: didPop, state: state, shell: shell),
             child: Scaffold(
-              body: shell,
+              body: Stack(
+                fit: StackFit.expand,
+                children: [
+                  shell,
+
+                  MusicPlayerBar(),
+                ],
+              ),
               bottomNavigationBar: BottomNavigationBar(
                 items: routeData.barItems,
                 onTap: (index) => bottomRouteHelper.onTap(index: index, shell: shell),

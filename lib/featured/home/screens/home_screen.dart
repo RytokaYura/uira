@@ -1,7 +1,6 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:uira/core/core_path.dart';
 import '../../../common/common_path.dart';
 import '../../feature_path.dart';
@@ -15,15 +14,11 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   final MockVideo mockVideo = MockVideo();
-  final MockMusic mockMusic = MockMusic();
 
   List<MockVideoModel> allVideo = [];
-  List<MockMusicModel> allMusic = [];
   List<MockVideoModel> favoriteVideo = [];
-  List<MockMusicModel> favoriteMusic = [];
 
   List<bool> isLongPress = [];
-  List<Map<String, dynamic>> combinedList = [];
 
   bool isAuto = true;
   int currentIndex = 0;
@@ -32,16 +27,15 @@ class _HomeScreenState extends State<HomeScreen> {
   void initState() {
     super.initState();
     allVideo = List.of(mockVideo.data)..shuffle();
-    allMusic = List.of(mockMusic.data)..shuffle();
 
     favoriteVideo = allVideo.take(min(4, mockVideo.data.length)).toList();
-    favoriteMusic = allMusic.take(min(5, mockMusic.data.length)).toList();
 
     isLongPress = List.filled(favoriteVideo.length, false);
   }
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       appBar: UiraAppBar(onTap: () {},),
       body: AppScrollView(
@@ -76,29 +70,7 @@ class _HomeScreenState extends State<HomeScreen> {
             },
           ),
 
-          AppGridBuilder(
-            itemCount: min(4, favoriteMusic.length),
-            itemBuilder: (context, index) {
-              final item = favoriteMusic[index];
-              if (index == min(4, favoriteMusic.length) - 1 && favoriteMusic.length > 4) {
-                return AppCardAll(onTap: () {},);
-              }
-              return AppMusicItem(
-                onTap: () {
-                  context.read<MusicPlayerBloc<MockMusicModel>>().add(
-                    MusicNewPlayListRequested(
-                      playlist: allMusic,
-                      startIndex: index,
-                    ),
-                  );
-                  RouteHelper().goPush(context, AppRoutePath.musicPlayer);
-                },
-                title: item.title,
-                artist: item.artist,
-                imageAsset: item.cover,
-              );
-            },
-          ),
+          const FavoriteListMusic(),
 
           AppSection(title: 'Latest Video'),
 
@@ -131,35 +103,10 @@ class _HomeScreenState extends State<HomeScreen> {
 
           AppSecondSection(title: 'Latest Music', toAll: () {},),
 
-          AppListBuilder(
-            count: min(10, allMusic.length),
-            builder: (context, index) {
-              final item = allMusic[index];
-              return AppListVerticalItem(
-                content: AppMusicItem(
-                  onTap: () {
-                    context.read<MusicPlayerBloc<MockMusicModel>>().add(
-                      MusicNewPlayListRequested(
-                        playlist: allMusic,
-                        startIndex: index,
-                      ),
-                    );
-                    RouteHelper().goPush(context, AppRoutePath.musicPlayer);
-                  },
-                  borderRadius: BorderRadius.zero,
-                  color: Colors.transparent,
-                  padding: EdgeInsets.symmetric(
-                    horizontal: 15.0,
-                    vertical: 5.0,
-                  ),
-                  title: item.title,
-                  album: item.album,
-                  artist: item.artist,
-                  imageAsset: item.cover,
-                ),
-              );
-            },
-          ),
+          const HomeLastMusic(),
+
+          const SizedBox(height: 100.0),
+
         ],
       ),
     );

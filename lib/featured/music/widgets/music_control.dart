@@ -12,7 +12,21 @@ class MusicControl extends StatelessWidget {
   final VoidCallback? onNext;
   final VoidCallback? onEqualizer;
   final bool isPlay;
-  const MusicControl({super.key, this.mode, this.onMode, this.onPrev, this.onPlay, this.onNext, this.onEqualizer, this.isPlay = true});
+  final Color? colorPrev;
+  final Color? colorNext;
+
+  const MusicControl({
+    super.key,
+    this.mode,
+    this.onMode,
+    this.onPrev,
+    this.onPlay,
+    this.onNext,
+    this.onEqualizer,
+    this.isPlay = true,
+    this.colorPrev,
+    this.colorNext,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -30,17 +44,40 @@ class MusicControl extends StatelessWidget {
           return PhosphorIcons.repeat();
       }
     }
+
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 15.0),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          AppIconButton(onTap: onMode, icon: getIconMode(), color: theme.hintColor,),
-          AppIconButton(onTap: onPrev, icon: PhosphorIcons.skipBack(PhosphorIconsStyle.fill),),
-          AppIconButton(onTap: onPlay, icon: isPlay ? PhosphorIcons.pauseCircle(PhosphorIconsStyle.fill) : PhosphorIcons.playCircle(PhosphorIconsStyle.fill), size: 52.0,),
-          AppIconButton(onTap: onNext, icon: PhosphorIcons.skipForward(PhosphorIconsStyle.fill),),
-          AppIconButton(onTap: onEqualizer, icon: PhosphorIcons.sliders(), color: theme.hintColor,),
+          AppIconButton(
+            onTap: onMode,
+            icon: getIconMode(),
+            color: theme.hintColor,
+          ),
+          AppIconButton(
+            onTap: onPrev,
+            icon: PhosphorIcons.skipBack(PhosphorIconsStyle.fill),
+            color: colorPrev,
+          ),
+          AppIconButton(
+            onTap: onPlay,
+            icon: isPlay
+                ? PhosphorIcons.pauseCircle(PhosphorIconsStyle.fill)
+                : PhosphorIcons.playCircle(PhosphorIconsStyle.fill),
+            size: 52.0,
+          ),
+          AppIconButton(
+            onTap: onNext,
+            icon: PhosphorIcons.skipForward(PhosphorIconsStyle.fill),
+            color: colorNext,
+          ),
+          AppIconButton(
+            onTap: onEqualizer,
+            icon: PhosphorIcons.sliders(),
+            color: theme.hintColor,
+          ),
         ],
       ),
     );

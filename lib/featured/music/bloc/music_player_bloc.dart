@@ -129,21 +129,8 @@ class MusicPlayerBloc<T extends BaseData> extends Bloc<MusicPlayerEvent, MusicPl
     if (state is MusicPlaybackState) {
       final currentState = state as MusicPlaybackState<T>;
 
-      if (currentState.isShuffleActive) {
-        final nextIndex = _getRandomIndex(
-          playlistLength: currentState.playlist.length,
-          currentIndex: currentState.currentIndex,
-        );
-        await _playAtIndex(nextIndex, emit);
-        return;
-      }
-
-      final isLastSong = currentState.currentIndex >= currentState.playlist.length - 1;
-      if (isLastSong) {
-        if (currentState.repeatMode == RepeatMode.all) {
-          await _playAtIndex(0, emit);
-        }
-      } else {
+      final isLastSong = currentState.currentIndex == currentState.playlist.length - 1;
+      if (!isLastSong) {
         await _playAtIndex(currentState.currentIndex + 1, emit);
       }
     }

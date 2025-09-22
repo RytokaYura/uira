@@ -39,7 +39,7 @@ class _VideoScreenState extends State<VideoScreen> {
       appBar: UiraAppBar(title: 'Video', onTap: () {},),
       body: AppScrollView(
         content: [
-          AppSection(title: 'Favorite'),
+          const AppSection(title: 'Favorite'),
 
           const SizedBox(height: 15.0),
 
@@ -68,7 +68,7 @@ class _VideoScreenState extends State<VideoScreen> {
 
           const SizedBox(height: 15.0),
 
-          AppSection(title: 'All Video'),
+          const AppSection(title: 'All Video'),
 
           AppListBuilder(
             count: allVideo.length,
@@ -85,6 +85,9 @@ class _VideoScreenState extends State<VideoScreen> {
               );
             },
           ),
+
+          const SizedBox(height: 100.0),
+          
         ],
       ),
     );

@@ -10,7 +10,7 @@ class MusicPlayerScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
+    final theme = Theme.of(context);
     return BlocBuilder<MusicPlayerBloc<MockMusicModel>, MusicPlayerState>(
       builder: (context, state) {
         if (state is! MusicPlaybackState<MockMusicModel>) {
@@ -62,6 +62,8 @@ class MusicPlayerScreen extends StatelessWidget {
                 onPlay: () => state.isPlaying ? context.read<MusicPlayerBloc<MockMusicModel>>().add(MusicPauseRequested()) : context.read<MusicPlayerBloc<MockMusicModel>>().add(MusicPlayRequested()),
                 onNext: () => context.read<MusicPlayerBloc<MockMusicModel>>().add(NextSongRequested()),
                 onPrev: () => context.read<MusicPlayerBloc<MockMusicModel>>().add(PreviousSongRequested()),
+                colorPrev: state.currentIndex == 0 ? theme.hintColor : null,
+                colorNext: state.currentIndex == state.playlist.length - 1 ? theme.hintColor : null,
               ),
 
                MusicCreditInfo(
